@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <title>Dom Coding Dojo</title>
 </body>
 <style>
-    body{
-        font-family: Arial, Helvetica, sans-serif;
+    body {
+        font-family: 'Inter', sans-serif;
         text-align: center;
         margin: 50px;
     }
-    h1{
-        color: #007BFF;   
+
+    h1 {
+        color: #007BFF;
     }
-    h1:hover{
+
+    h1:hover {
         color: red;
     }
 </style>
+
 <body>
     <h1>Manipulação do DOM</h1>
     <p id="demo">Bem-Vindo ao Coding Dojo!</p>
@@ -33,7 +40,32 @@
     </ul>
     <input id="caixatexto">
     <input type="date" name="" id="data">
-    <button onclick="add(), addData()">Adicionar</button>
-    <button onclick="remove()">Remover</button>
+    <button id="add">Adicionar</button>
+    <button id="remove">Remover</button>
 </body>
+<script>
+    document.getElementById("changeText").addEventListener('click', function () {
+        document.getElementById('demo').innerHTML = 'Novo Texto'
+    })
+    document.getElementById("add").addEventListener("click", function () {
+        let data = document.getElementById('data').value
+        let texto = document.getElementById("caixatexto").value
+        document.getElementById("lista").innerHTML = `<li> <input type="checkbox" onclick="ifcheck()" id="check"> ${texto} ${data.split('-').reverse().join('/')}</li>` + document.getElementById("lista").innerHTML
+    })
+    document.getElementById("remove").addEventListener("click", function () {
+        let lista = document.getElementById("lista")
+        lista.removeChild(lista.querySelectorAll('li')[lista.querySelectorAll('li').length - 1]);
+    });
+
+    function ifcheck() {
+    document.getElementById("lista").querySelectorAll("#check").forEach(element => {
+        if (element.checked) {
+            element.parentNode.style.textDecoration = "line-through";
+            document.getElementById("lista").innerHTML += element.parentNode.innerHTML
+            lista.removeChild(element.parentNode);
+        }
+    });
+}
+</script>
+
 </html>
